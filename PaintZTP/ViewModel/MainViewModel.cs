@@ -48,6 +48,13 @@ namespace PaintZTP.ViewModel
         public RelayCommand Export { get; internal set; }
         public RelayCommand ClearAll { get; internal set; }
         public RelayCommand AddLineHorizontal { get; internal set; }
+        public RelayCommand AddSquare { get; internal set; }
+        public RelayCommand AddTriangle { get; internal set; }
+        public RelayCommand AddCircle { get; internal set; }
+
+
+
+
 
         public MainViewModel()
         {
@@ -76,12 +83,24 @@ namespace PaintZTP.ViewModel
 
             });
         }
+        private void InitializeShapeButtons()
+        {
+            AddLineHorizontal = new RelayCommand(list =>
+                AddShape(0, (ListBox)list)
+            );
+            AddSquare = new RelayCommand(list =>
+                 AddShape(1,(ListBox)list)
+            );
+            AddTriangle = new RelayCommand(list =>
+                AddShape(2, (ListBox)list)
+            );
+            AddCircle = new RelayCommand(list =>
+            AddShape(3, (ListBox)list)
+            );
+        }
+
         private void InitializeFunctionButtons()
         {
-            AddLineHorizontal = new RelayCommand(sender =>
-            {
-                paint.Add(0);
-            });
             Undo = new RelayCommand(sender => 
             {
                 paint.Undo();
