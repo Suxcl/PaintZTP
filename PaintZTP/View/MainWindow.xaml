@@ -1,0 +1,70 @@
+﻿<Window x:Class="PaintZTP.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaintZTP"
+        xmlns:viewModel="clr-namespace:PaintZTP.ViewModel"
+        ResizeMode="NoResize"
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="900">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid Background="#ccffff">
+        <Grid Width="200" Height="560" Background="LightGray" HorizontalAlignment="Left" >
+            <StackPanel >
+                <Button Command="{Binding Export}" Margin="4">Export</Button>
+                <Button Command="{Binding Undo}" Margin="4">Undo</Button>
+                <Button Command="{Binding ClearAll}" Margin="4">Clear Sheet</Button>
+
+                <TextBlock Text="Shapes" TextAlignment="Center" Margin="4"></TextBlock>
+                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
+                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
+                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
+                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
+                <StackPanel Orientation="Horizontal" Margin="4">
+                    <TextBox Text="{Binding SelectedShapeSize}" Margin="2,10,2,10" Width="120"></TextBox>
+                    <Button Command="{Binding SetSize}" Width="60" Margin="2,10,2,10" Content="Set Size"></Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="4">
+                    <Border BorderBrush="Red" BorderThickness="1" Margin="1,9,1,9">
+                        <TextBox Text="{Binding SelectedShapeR}" Width="37"></TextBox>    
+                    </Border>
+                    <Border Margin="1,9,1,9" BorderBrush="Green" BorderThickness="1">
+                        <TextBox Text="{Binding SelectedShapeG}" Width="37"></TextBox>    
+                    </Border>
+                    <Border Margin="1,9,1,9" BorderBrush="Blue" BorderThickness="1">
+                        <TextBox Text="{Binding SelectedShapeB}"  Width="37"></TextBox>
+                    </Border>
+                    <Button Command="{Binding SetColor}" Width="60" Margin="2,10,2,10" Content="Set Color"></Button>
+                </StackPanel>
+                <Button Command="{Binding Remove}" Margin="2,20,2,10" Width="180" Content="Remove"></Button>
+                <ListBox
+                    Margin="2,10,2,10"
+                    Height="175"
+                    
+                    Name="ShapeListBox"
+                    SelectedIndex="{Binding SelectedShapeId}" 
+                    ItemsSource="{Binding ListBoxShapes}">
+                </ListBox>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Height="300" Margin="10,10,10,10">
+                
+            </StackPanel>
+        </Grid>
+        <Grid>
+
+            <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" HorizontalAlignment="left" VerticalAlignment="Center" Width="700" Height="560" Margin="200,0,0,0"
+                Source="{Binding Bitmap}"></Image>
+            
+            
+        </Grid>
+
+
+
+    </Grid>
+</Window>
