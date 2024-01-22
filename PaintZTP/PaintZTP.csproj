@@ -70,9 +70,12 @@
     <Compile Include="Model\Exporters\PNGExporter.cs" />
     <Compile Include="Model\Observer\PaintingObserver.cs" />
     <Compile Include="Model\Paint.cs" />
+    <Compile Include="Model\Shapes\Circle.cs" />
+    <Compile Include="Model\Shapes\Square.cs" />
     <Compile Include="Model\Shapes\Colordwada.cs" />
     <Compile Include="Model\Shapes\LineHorizontal.cs" />
     <Compile Include="Model\Shapes\Shape.cs" />
+    <Compile Include="Model\Shapes\Triangle.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

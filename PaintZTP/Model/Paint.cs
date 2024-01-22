@@ -31,8 +31,11 @@ namespace PaintZTP.Model
         private Paint()
         {
             Bitmap = new WriteableBitmap(700, 560, 96, 96, PixelFormats.Bgra32, null);
-            Shapes = new Shapes.Shape[3];
+            Shapes = new Shapes.Shape[4];
             Shapes[0] = new LineHorizontal(new Point(100,100));
+            Shapes[1] = new Square(new Point(100, 100));
+            Shapes[2] = new Triangle(new Point(100, 100));
+            Shapes[3] = new Circle(new Point(100, 100));
             WBAdapter = new WriteableBitmapAdapter();
             commandController = new CommandController();
         }

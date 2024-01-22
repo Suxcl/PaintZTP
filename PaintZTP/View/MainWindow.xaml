@@ -23,9 +23,9 @@
 
                 <TextBlock Text="Shapes" TextAlignment="Center" Margin="4"></TextBlock>
                 <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
-                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
-                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
-                <Button Content="Horizontal Line" Margin="4" Command="{Binding AddLineHorizontal, Mode=OneWay}"></Button>
+                <Button Content="Square" Margin="4" Command="{Binding AddSquare, Mode=OneWay}"></Button>
+                <Button Content="Triangle" Margin="4" Command="{Binding AddTriangle, Mode=OneWay}"></Button>
+                <Button Content="Circle" Margin="4" Command="{Binding AddCircle, Mode=OneWay}"></Button>
                 <StackPanel Orientation="Horizontal" Margin="4">
                     <TextBox Text="{Binding SelectedShapeSize}" Margin="2,10,2,10" Width="120"></TextBox>
                     <Button Command="{Binding SetSize}" Width="60" Margin="2,10,2,10" Content="Set Size"></Button>
