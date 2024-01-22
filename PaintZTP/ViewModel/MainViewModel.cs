@@ -60,7 +60,7 @@ namespace PaintZTP.ViewModel
         {
             InitializeMouseEvents();
             InitializeFunctionButtons();
-
+            InitializeShapeButtons();
             paint = Paint.GetInstance();            
             Bitmap = paint.GetBitmap();
             ListBoxShapes = paint.GetShapes();
@@ -86,16 +86,16 @@ namespace PaintZTP.ViewModel
         private void InitializeShapeButtons()
         {
             AddLineHorizontal = new RelayCommand(list =>
-                AddShape(0, (ListBox)list)
+                AddShape(0)
             );
             AddSquare = new RelayCommand(list =>
-                 AddShape(1,(ListBox)list)
+                 AddShape(1)
             );
             AddTriangle = new RelayCommand(list =>
-                AddShape(2, (ListBox)list)
+                AddShape(2)
             );
             AddCircle = new RelayCommand(list =>
-            AddShape(3, (ListBox)list)
+            AddShape(3)
             );
         }
 
@@ -156,11 +156,14 @@ namespace PaintZTP.ViewModel
                 paint.Remove(SelectedShapeId);
             });
         }
+        private void AddShape(int paletteIndex)
+        {
+            paint.Add(paletteIndex);
+        }
 
- 
-        
 
 
-        
+
+
     }
 }
