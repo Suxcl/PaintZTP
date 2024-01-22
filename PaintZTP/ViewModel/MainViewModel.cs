@@ -58,13 +58,13 @@ namespace PaintZTP.ViewModel
 
         public MainViewModel()
         {
-            InitializeMouseEvents();
-            InitializeFunctionButtons();
-            InitializeShapeButtons();
             paint = Paint.GetInstance();            
             Bitmap = paint.GetBitmap();
             ListBoxShapes = paint.GetShapes();
-            SelectedShapeId = -1;            
+            SelectedShapeId = -1;
+
+            InitializeMouseEvents();
+            InitializeFunctionButtons();
         }
 
         private void InitializeMouseEvents()
@@ -83,24 +83,22 @@ namespace PaintZTP.ViewModel
 
             });
         }
-        private void InitializeShapeButtons()
-        {
-            AddLineHorizontal = new RelayCommand(list =>
-                AddShape(0)
-            );
-            AddSquare = new RelayCommand(list =>
-                 AddShape(1)
-            );
-            AddTriangle = new RelayCommand(list =>
-                AddShape(2)
-            );
-            AddCircle = new RelayCommand(list =>
-            AddShape(3)
-            );
-        }
+        
 
         private void InitializeFunctionButtons()
-        {
+        {       
+            AddLineHorizontal = new RelayCommand(list =>
+                paint.Add(0)
+            );
+            AddSquare = new RelayCommand(list =>
+                paint.Add(1)
+            );
+            AddTriangle = new RelayCommand(list =>
+                paint.Add(2)
+            );
+            AddCircle = new RelayCommand(list =>
+                paint.Add(3)
+            );
             Undo = new RelayCommand(sender => 
             {
                 paint.Undo();
@@ -136,8 +134,9 @@ namespace PaintZTP.ViewModel
                 }
                 else
                 {
-                    // show dialog
+                    MessageBox.Show("Proszę podac odpowiednią formę RGB (0-255)", "Błąd zmiany koloru", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+            
             });
             SetSize = new RelayCommand(sender => {
                 if (SelectedShapeId < 0) { return; }
@@ -147,7 +146,7 @@ namespace PaintZTP.ViewModel
                 }
                 else
                 {
-                    // show dialog
+                    MessageBox.Show("Proszę podac wielkość w postaci liczby", "Błąd zmiany wielkości", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                     
             });

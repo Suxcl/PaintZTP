@@ -18,5 +18,6 @@ namespace PaintZTP.Model.Exporters
         {
             return "PNG";
         }
+
     }
 }

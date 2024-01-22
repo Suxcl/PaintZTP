@@ -116,21 +116,18 @@ namespace PaintZTP.Model
         }
         public void Export(int index, string path)
         {
-            Exporter exporter;
             switch (index)
             {
                 case 0:
-                    exporter = new BmpExporter();
+                    new BmpExporter().Export(Bitmap, path);
                     break;
                 case 1:
-                    exporter = new PNGExporter();
+                    new PNGExporter().Export(Bitmap, path);
                     break;
                 case 2:
-                    exporter = new JPGExporter();
+                    new JPGExporter().Export(Bitmap, path);
                     break;
             }
-
-
         }
         
 
