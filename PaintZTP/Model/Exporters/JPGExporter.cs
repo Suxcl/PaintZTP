@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace PaintZTP.Model.Exporters
 {
-    public class JPEGExporter : Exporter
+    public class JPGExporter : Exporter
     {
         protected override BitmapEncoder CreateBitmapEncoder()
         {

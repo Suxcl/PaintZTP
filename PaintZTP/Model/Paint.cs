@@ -9,6 +9,10 @@ using System;
 using System.Xml.Linq;
 using System.Collections.ObjectModel;
 using PaintZTP.Model.Adapter;
+using MColor = System.Windows.Media.Color;
+using WPoint = System.Windows.Point;
+using System.Drawing;
+using PaintZTP.Model.Exporters;
 
 namespace PaintZTP.Model
 {
@@ -32,7 +36,7 @@ namespace PaintZTP.Model
         {
             Bitmap = new WriteableBitmap(700, 560, 96, 96, PixelFormats.Bgra32, null);
             Shapes = new Shapes.Shape[3];
-            Shapes[0] = new LineHorizontal(new Point(100,100));
+            Shapes[0] = new LineHorizontal(new WPoint(100,100));
             WBAdapter = new WriteableBitmapAdapter();
             commandController = new CommandController();
         }
@@ -74,7 +78,7 @@ namespace PaintZTP.Model
                 
             }
         }
-        public bool Move(int index, Point newCenter)
+        public bool Move(int index, WPoint newCenter)
         {
             if (commandController.Move(index, newCenter))
             {
@@ -92,12 +96,40 @@ namespace PaintZTP.Model
             }
             return false;
         }
-        public bool Remove(int index)
+        public void Remove(int index)
         {
-            if (commandController.Remove(index)) { Redraw(); return true;}
-            return false;
+            commandController.Remove(index);
+            Redraw();
+        }
+        public void SetSize(int index, int Size)
+        {
+            commandController.SetSize(index, Size);
+            Redraw();
+        }
+        public void SetColor(int index, MColor color)
+        {
+            commandController.SetColor(index, color);
+            Redraw();
+        }
+        public void Export(int index, string path)
+        {
+            Exporter exporter;
+            switch (index)
+            {
+                case 0:
+                    exporter = new BmpExporter();
+                    break;
+                case 1:
+                    exporter = new PNGExporter();
+                    break;
+                case 2:
+                    exporter = new JPGExporter();
+                    break;
+            }
+
 
         }
+        
 
 
 

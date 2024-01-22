@@ -64,11 +64,12 @@
     <Compile Include="Model\Commands\CommandController.cs" />
     <Compile Include="Model\Commands\Move.cs" />
     <Compile Include="Model\Commands\Remove.cs" />
+    <Compile Include="Model\Commands\SetColor.cs" />
+    <Compile Include="Model\Commands\SetSize.cs" />
     <Compile Include="Model\Exporters\BMPExporter.cs" />
     <Compile Include="Model\Exporters\Exporter.cs" />
-    <Compile Include="Model\Exporters\JPEGExporter.cs" />
+    <Compile Include="Model\Exporters\JPGExporter.cs" />
     <Compile Include="Model\Exporters\PNGExporter.cs" />
-    <Compile Include="Model\Observer\PaintingObserver.cs" />
     <Compile Include="Model\Paint.cs" />
     <Compile Include="Model\Shapes\Colordwada.cs" />
     <Compile Include="Model\Shapes\LineHorizontal.cs" />

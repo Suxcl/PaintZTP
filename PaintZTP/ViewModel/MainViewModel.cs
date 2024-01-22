@@ -6,6 +6,7 @@ using System.Collections;
 using System.IO;
 using System.Windows;
 using WPoint = System.Windows.Point;
+using MColor = System.Windows.Media.Color;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -24,6 +25,7 @@ using static System.Net.Mime.MediaTypeNames;
 using Image = System.Windows.Controls.Image;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
+using PaintZTP.Model.Exporters;
 
 namespace PaintZTP.ViewModel
 {
@@ -47,25 +49,15 @@ namespace PaintZTP.ViewModel
         public RelayCommand ClearAll { get; internal set; }
         public RelayCommand AddLineHorizontal { get; internal set; }
 
-
-
-
-
-
-
         public MainViewModel()
         {
             InitializeMouseEvents();
-            InitializeShapeButtons();
             InitializeFunctionButtons();
 
             paint = Paint.GetInstance();            
             Bitmap = paint.GetBitmap();
             ListBoxShapes = paint.GetShapes();
-
-            SelectedShapeId = -1;
-            
-
+            SelectedShapeId = -1;            
         }
 
         private void InitializeMouseEvents()
@@ -84,16 +76,12 @@ namespace PaintZTP.ViewModel
 
             });
         }
-        private void InitializeShapeButtons()
-        {
-            AddLineHorizontal = new RelayCommand(list =>
-                AddShape(0, (ListBox)list)
-            );
-
-        }
-
         private void InitializeFunctionButtons()
         {
+            AddLineHorizontal = new RelayCommand(sender =>
+            {
+                paint.Add(0);
+            });
             Undo = new RelayCommand(sender => 
             {
                 paint.Undo();
@@ -104,38 +92,53 @@ namespace PaintZTP.ViewModel
                     ListBoxShapes = paint.GetShapes();
                     SelectedShapeId = -1;
             });
-            Export = new RelayCommand(sender => { });
-            SetColor = new RelayCommand(sender => { });
-            SetSize = new RelayCommand(sender => { });
-            Remove = new RelayCommand(list => {
-                var listBox = (ListBox)list;
-                var index = listBox.SelectedIndex;
-                if(index < 0) { return; }
-                if (paint.Remove(index))
+            Export = new RelayCommand(sender => {
+
+                var dialog = new SaveFileDialog();
+                dialog.Title = "Export drawing";
+                dialog.InitialDirectory = Directory.GetCurrentDirectory();
+                dialog.Filter = "BMP image files|*.bmp|PNG image files|*.png|JPG image files|*.jpg"; 
+                dialog.FilterIndex = 1; 
+
+                if (dialog.ShowDialog() == true)
                 {
-                    var count = listBox.Items.Count;
-                    if(count == 0)
-                    {
-                        listBox.SelectedIndex = -1;
-                    }
-                    else
-                    {
-                        if(index == count)
-                        {
-                            index=index-1;
-                        }
-                        listBox.SelectedIndex = index;
-                    }
+                    paint.Export(dialog.FilterIndex - 1, dialog.FileName);
                 }
+            });
+            SetColor = new RelayCommand(sender => {
+                if (SelectedShapeId < 0) { return; }
+                if (
+                       byte.TryParse(SelectedShapeR, out byte r) 
+                    && byte.TryParse(SelectedShapeG, out byte g) 
+                    && byte.TryParse(SelectedShapeB, out byte b)
+                )
+                {
+                    paint.SetColor(SelectedShapeId, MColor.FromRgb(r,g,b));
+                }
+                else
+                {
+                    // show dialog
+                }
+            });
+            SetSize = new RelayCommand(sender => {
+                if (SelectedShapeId < 0) { return; }
+                if (int.TryParse(SelectedShapeSize, out int result))
+                {
+                    paint.SetSize(SelectedShapeId, result);
+                }
+                else
+                {
+                    // show dialog
+                }
+                    
+            });
+            Remove = new RelayCommand(sender => {
+                if(SelectedShapeId < 0) { return; }
+                paint.Remove(SelectedShapeId);
             });
         }
 
-        private void AddShape(int index, ListBox listBox)
-        {
-            Trace.WriteLine("AddShape in viewmodel");
-            paint.Add(index);
-            SelectedShapeId = 0;
-        }
+ 
         
 
 

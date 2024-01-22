@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using PaintZTP.Model;
-using System.Drawing;
+
 using System.Diagnostics;
 using PaintZTP.Model.Adapter;
+using MColor = System.Windows.Media.Color;
 
 namespace PaintZTP.Model.Shapes
 {
     public abstract class Shape
     {
-        public Color color { get; set; }
+        public MColor color { get; set; }
         private Paint paint;
         public System.Windows.Point center { get; set; }
         public int size { get; set; }
@@ -25,14 +26,21 @@ namespace PaintZTP.Model.Shapes
         protected Shape()
         {
             paint = Paint.GetInstance();
-            color = new Color(0, 0, 0);
+            color = MColor.FromRgb(0, 0, 0);
             WBA = new WriteableBitmapAdapter();
 
         }
         public abstract Shape Clone();
         public abstract WriteableBitmap Draw(WriteableBitmap bitmap);
-
         public abstract System.Windows.Point Move(System.Windows.Point newCenter);
+        public void SetSize(int Size)
+        {
+            this.size = Size;
+        }
+        public void SetColor(MColor color)
+        {
+            this.color = color;
+        }
 
     }
 }

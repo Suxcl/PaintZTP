@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Security.Cryptography;
 using Shape = PaintZTP.Model.Shapes.Shape;
 using PaintZtp.Model.Commands;
+using MColor = System.Windows.Media.Color;
 using System.Reflection;
 
 namespace PaintZTP.Model.Commands
@@ -110,6 +111,23 @@ namespace PaintZTP.Model.Commands
             History.Pop().Undo();
             TraceHistory();
             return true;
+        }
+
+        public void SetSize(int index, int Size)
+        {
+            if (indexChecker(index)) { return; }
+            var toChange = Shapes[index];
+            var oldSize = toChange.size;
+            toChange.SetSize(Size);
+            History.Push(new SetSize(toChange, oldSize));
+        }
+        public void SetColor(int index, MColor color)
+        {
+            if (indexChecker(index)) { return; }
+            var toChange = Shapes[index];
+            var oldSize = toChange.size;
+            toChange.SetColor(color);
+            History.Push(new SetSize(toChange, oldSize));
         }
 
         public class ShapesIterator

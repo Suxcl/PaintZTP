@@ -35,7 +35,7 @@ namespace PaintZTP.Model.Shapes
             for (int i = 0; i < +size; i++)
             {
                 //Trace.WriteLine((int)start.X + i+ " <-x y-> "+ (int)start.Y);
-                bitmap = WBA.DrawDot(bitmap, (int)start.X + i, (int)start.Y, System.Windows.Media.Color.FromRgb(255,0,0));
+                bitmap = WBA.DrawDot(bitmap, (int)start.X + i, (int)start.Y, this.color);
             }
             return bitmap;
         }

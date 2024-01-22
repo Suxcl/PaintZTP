@@ -21,9 +21,5 @@ namespace PaintZTP.View
             ((MainViewModel)DataContext).Image_MouseLeftButtonDown.Execute(e);
         }
 
-        private void Image_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-           // ((MainViewModel)DataContext).ScaleSelectedShape.Execute(e); // wywołanie RelayCommanda obsługującego kliknięcie na obrazie prawym przyciskiem myszy
-        }
     }
 }
