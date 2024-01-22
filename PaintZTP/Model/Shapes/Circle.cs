@@ -63,14 +63,14 @@ namespace PaintZTP.Model.Shapes
         }
         private void DrawCirclePoints(WriteableBitmap bitmap, int xCenter, int yCenter, int x, int y)
         {
-            bitmap = WBA.DrawDot(bitmap, xCenter + x, yCenter + y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter - x, yCenter + y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter + x, yCenter - y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter - x, yCenter - y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter + y, yCenter + x, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter - y, yCenter + x, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter + y, yCenter - x, System.Windows.Media.Color.FromRgb(255, 0, 0));
-            bitmap = WBA.DrawDot(bitmap, xCenter - y, yCenter - x, System.Windows.Media.Color.FromRgb(255, 0, 0));
+            bitmap = WBA.DrawDot(bitmap, xCenter + x, yCenter + y, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter - x, yCenter + y, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter + x, yCenter - y, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter - x, yCenter - y, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter + y, yCenter + x, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter - y, yCenter + x, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter + y, yCenter - x, this.color);
+            bitmap = WBA.DrawDot(bitmap, xCenter - y, yCenter - x, this.color);
         }
         public override Point Move(Point newCenter)
         {

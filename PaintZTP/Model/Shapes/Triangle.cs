@@ -36,7 +36,7 @@ namespace PaintZTP.Model.Shapes
             // podstawa
             for (int x = 0; x < size; x++)
             {
-                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y, System.Windows.Media.Color.FromRgb(255, 0, 0));
+                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y, this.color);
             }
 
             int height = (int)(size * Math.Sqrt(3) / 2); //wysokosc
@@ -44,11 +44,11 @@ namespace PaintZTP.Model.Shapes
             {
                 //lewy
                 int xLeft = (int)(start.X + y / Math.Sqrt(3));
-                bitmap = WBA.DrawDot(bitmap, xLeft, (int)start.Y - y, System.Windows.Media.Color.FromRgb(255, 0, 0));
+                bitmap = WBA.DrawDot(bitmap, xLeft, (int)start.Y - y, this.color);
 
                 // prawy
                 int xRight = (int)(start.X + size - y / Math.Sqrt(3));
-                bitmap = WBA.DrawDot(bitmap, xRight, (int)start.Y - y, System.Windows.Media.Color.FromRgb(255, 0, 0));
+                bitmap = WBA.DrawDot(bitmap, xRight, (int)start.Y - y, this.color);
             }
 
             return bitmap;

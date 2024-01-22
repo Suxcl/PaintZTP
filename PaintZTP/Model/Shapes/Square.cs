@@ -36,15 +36,15 @@ namespace PaintZTP.Model.Shapes
             // Góra i dół
             for (int x = 0; x < size; x++)
             {
-                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y + size - 1, System.Windows.Media.Color.FromRgb(255, 0, 0));
+                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y, this.color);
+                bitmap = WBA.DrawDot(bitmap, (int)start.X + x, (int)start.Y + size - 1, this.color);
             }
 
             // Lewy i prawy
             for (int y = 1; y < size - 1; y++)
             {
-                bitmap = WBA.DrawDot(bitmap, (int)start.X, (int)start.Y + y, System.Windows.Media.Color.FromRgb(255, 0, 0));
-                bitmap = WBA.DrawDot(bitmap, (int)start.X + size - 1, (int)start.Y + y, System.Windows.Media.Color.FromRgb(255, 0, 0));
+                bitmap = WBA.DrawDot(bitmap, (int)start.X, (int)start.Y + y, this.color);
+                bitmap = WBA.DrawDot(bitmap, (int)start.X + size - 1, (int)start.Y + y, this.color);
             }
 
             return bitmap;
